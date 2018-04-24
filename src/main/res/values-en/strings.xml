@@ -3,4 +3,5 @@
     <string name="play">Play !</string>
     <string name="info">About ...</string>
     <string name="tictac"> Tic Tac Toe </string>
+    <string name="exit"> Exit </string>
 </resources>

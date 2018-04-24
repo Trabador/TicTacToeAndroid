@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:onClick="onPlayButton"
             android:text="@string/play"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="191dp" />
@@ -54,9 +55,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center"
+            android:onClick="onPlayButton"
             android:text="@string/info"
             tools:layout_editor_absoluteX="175dp"
             tools:layout_editor_absoluteY="191dp" />
+
+        <Button
+            android:id="@+id/exitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onExitBtn"
+            android:text="@string/exit" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
