@@ -4,4 +4,9 @@
     <string name="info">Informacion</string>
     <string name="tictac"> Gato # </string>
     <string name="exit"> Salir </string>
+    <string name="one_player"> 1 Jugador</string>
+    <string name="two_player"> 2 Jugadores </string>
+    <string name="easy">Modo Facil</string>
+    <string name="normal">Modo Normal </string>
+    <string name="insane">Modo Imposible</string>
 </resources>

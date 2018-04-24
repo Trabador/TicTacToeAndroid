@@ -5,13 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="73dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="140dp"
-        android:text="Testing"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/onePlayerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="on1PlayerButton"
+            android:text="@string/one_player" />
+
+        <RadioGroup
+            android:id="@+id/difficultylevel"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:checkedButton="@id/normalOpt">
+
+            <RadioButton
+                android:id="@+id/easyOpt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/easy" />
+
+            <RadioButton
+                android:id="@+id/normalOpt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/normal" />
+
+            <RadioButton
+                android:id="@+id/insaneOpt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/insane" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/twoPlayerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="on2PlayerButton"
+            android:text="@string/two_player" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
