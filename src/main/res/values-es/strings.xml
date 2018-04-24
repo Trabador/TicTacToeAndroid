@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Gato</string>
+    <string name="play">Jugar !</string>
+    <string name="info">Informacion</string>
+    <string name="tictac"> Gato # </string>
+</resources>
