@@ -9,4 +9,6 @@
     <string name="easy">Easy Mode</string>
     <string name="normal">Normal Mode</string>
     <string name="insane">Insane Mode</string>
+    <string name="circle_win">Circle Wins!</string>
+    <string name="cross_win">Cross Wins!</string>
 </resources>

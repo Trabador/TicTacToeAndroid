@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 
 /**
  * Created by Alexis on 24-Apr-18.
@@ -13,9 +16,10 @@ import android.widget.Toast;
 
 public class GameScreen extends Activity {
 
-    Byte players;
-    Byte level;
-    GameLogic game;
+    private Byte players;
+    private Byte level;
+    private GameLogic game;
+    private Boolean isOver;
 
     @Override
     protected  void onCreate(Bundle bundle){
@@ -26,26 +30,44 @@ public class GameScreen extends Activity {
         this.players = extraData.getByte("playerNumber");
         this.level = extraData.getByte("level");
         this.game = new GameLogic(players, level);
-
+        this.isOver = false;
     }
 
+
+
     public void onTile(View v){
-        ImageView aux = (ImageView) findViewById(v.getId());
-        Toast toast = Toast.makeText(getApplicationContext(),""+v.getId(),Toast.LENGTH_LONG);
-        toast.show();
-        setMarkOnTile(aux);
+        if(!isOver){
+            ImageView aux = (ImageView) findViewById(v.getId());
+            setMarkOnTile(aux);
+        }
+    }
+
+    private void endGame(){
+        isOver = true;
     }
 
     private void setMarkOnTile(ImageView tile){
         if(game.currentPlayer == 1){
+            game.markInGameTile(tile.getId());
             tile.setImageResource(R.drawable.circle);
             tile.setClickable(false);
-            game.currentPlayer = 2;
+            if(game.isWinner()){
+                Toast toast = Toast.makeText(getApplicationContext(),R.string.circle_win,Toast.LENGTH_LONG);
+                toast.show();
+                endGame();
+            }
+            else {game.changePlayerTurn();}
         }
         else {
+            game.markInGameTile(tile.getId());
             tile.setImageResource(R.drawable.cross);
             tile.setClickable(false);
-            game.currentPlayer = 1;
+            if(game.isWinner()){
+                Toast toast = Toast.makeText(getApplicationContext(),R.string.cross_win,Toast.LENGTH_LONG);
+                toast.show();
+                endGame();
+            }
+            else {game.changePlayerTurn();}
         }
     }
 }

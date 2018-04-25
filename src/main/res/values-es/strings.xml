@@ -9,4 +9,6 @@
     <string name="easy">Modo Facil</string>
     <string name="normal">Modo Normal </string>
     <string name="insane">Modo Imposible</string>
+    <string name="circle_win">Los Circulos Ganan!</string>
+    <string name="cross_win">Las Cruces Ganan!</string>
 </resources>
