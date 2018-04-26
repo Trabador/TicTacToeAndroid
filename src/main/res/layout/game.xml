@@ -7,20 +7,21 @@
     android:background="@color/colorPrimaryDark">
 
     <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="350dp"
         android:layout_height="350dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="#000000"
+        android:columnCount="3"
+        android:rowCount="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.655"
-        android:columnCount="3"
-        android:rowCount="3"
-        android:background="#000000">
+        app:layout_constraintVertical_bias="0.655">
 
         <ImageView
             android:id="@+id/a1"
@@ -38,43 +39,57 @@
             android:id="@+id/a3"
             style="@style/game_tile"
             android:clickable="true"
-            android:onClick="onTile"/>
+            android:onClick="onTile" />
 
         <ImageView
             android:id="@+id/b1"
             style="@style/game_tile"
             android:clickable="true"
-            android:onClick="onTile"/>
+            android:onClick="onTile" />
 
         <ImageView
             android:id="@+id/b2"
             style="@style/game_tile"
             android:clickable="true"
-            android:onClick="onTile"/>
+            android:onClick="onTile" />
 
         <ImageView
             android:id="@+id/b3"
             style="@style/game_tile"
             android:clickable="true"
-            android:onClick="onTile"/>
+            android:onClick="onTile" />
 
         <ImageView
             android:id="@+id/c1"
             style="@style/game_tile"
             android:clickable="true"
-            android:onClick="onTile"/>
+            android:onClick="onTile" />
 
         <ImageView
             android:id="@+id/c2"
             style="@style/game_tile"
             android:clickable="true"
-            android:onClick="onTile"/>
+            android:onClick="onTile" />
 
         <ImageView
             android:id="@+id/c3"
             style="@style/game_tile"
             android:clickable="true"
-            android:onClick="onTile"/>
+            android:onClick="onTile" />
 
     </GridLayout>
+
+    <TextView
+        android:id="@+id/currentPlytxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

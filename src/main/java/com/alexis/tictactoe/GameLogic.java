@@ -15,8 +15,15 @@ public class GameLogic {
     private Byte level;
     public Byte currentPlayer;
     public Byte[] gameArray = {0,0,0,0,0,0,0,0,0};
-    private Dictionary<Integer,Integer> tiles = new Hashtable();
-    private List<int[]> winCondition = new ArrayList();
+    /* Game board abstraction to array positions:
+       0|1|2
+       ------
+       3|4|5
+       ------
+       6|7|8
+     */
+    private Dictionary<Integer,Integer> tiles = new Hashtable();//Tile maping from GUI to array positions
+    private List<int[]> winCondition = new ArrayList();//List of every win condition in game
 
     GameLogic(Byte players, Byte level){
         this.players = players;
@@ -39,15 +46,14 @@ public class GameLogic {
     }
 
     private void fillWinConditionList(){
-
-        winCondition.add(new int[]{0,1,2});
-        winCondition.add(new int[]{3,4,5});
-        winCondition.add(new int[]{6,7,8});
-        winCondition.add(new int[]{0,3,6});
-        winCondition.add(new int[]{1,4,7});
-        winCondition.add(new int[]{2,5,8});
-        winCondition.add(new int[]{0,4,8});
-        winCondition.add(new int[]{2,4,6});
+        winCondition.add(new int[]{0,1,2});//first row positions for win
+        winCondition.add(new int[]{3,4,5});//second row positions for win
+        winCondition.add(new int[]{6,7,8});//third row positions for win
+        winCondition.add(new int[]{0,3,6});//first column positions for win
+        winCondition.add(new int[]{1,4,7});//second column positions for win
+        winCondition.add(new int[]{2,5,8});//third column positions for win
+        winCondition.add(new int[]{0,4,8});//diagonal positions for win
+        winCondition.add(new int[]{2,4,6});//inverse diagonal positions for win
     }
 
     public void markInGameTile(int key){
@@ -62,10 +68,19 @@ public class GameLogic {
             currentPlayer = 1;
     }
 
+    public boolean isTie(){
+        for(int i=0;i<gameArray.length;i++){
+            if(gameArray[i] == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean isWinner(){
         int markedTiles = 0;
         for(int[] elem:winCondition){
-            for(int i=0;i<3;i++){
+            for(int i=0;i<elem.length;i++){
                 if(gameArray[elem[i]] == currentPlayer){
                     markedTiles++;
                 }
@@ -77,6 +92,4 @@ public class GameLogic {
         }
         return false;
     }
-
-
 }

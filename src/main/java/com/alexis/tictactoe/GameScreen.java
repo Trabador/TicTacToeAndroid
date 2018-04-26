@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 
 /**
@@ -31,6 +29,17 @@ public class GameScreen extends Activity {
         this.level = extraData.getByte("level");
         this.game = new GameLogic(players, level);
         this.isOver = false;
+        showCurrentPlayerText();
+    }
+
+    private void showCurrentPlayerText(){
+        TextView currentPlayerText = (TextView) findViewById(R.id.currentPlytxt);
+        if(game.currentPlayer == 1){
+            currentPlayerText.setText(R.string.player_circle);
+        }
+        else {
+            currentPlayerText.setText(R.string.player_cross);
+        }
     }
 
 
@@ -44,30 +53,44 @@ public class GameScreen extends Activity {
 
     private void endGame(){
         isOver = true;
+        TextView winner = (TextView) findViewById(R.id.currentPlytxt);
+        if(game.currentPlayer ==1){
+            winner.setText(R.string.circle_win);
+        }
+        else{
+            winner.setText(R.string.cross_win);
+        }
     }
 
     private void setMarkOnTile(ImageView tile){
+        game.markInGameTile(tile.getId());
         if(game.currentPlayer == 1){
-            game.markInGameTile(tile.getId());
             tile.setImageResource(R.drawable.circle);
             tile.setClickable(false);
-            if(game.isWinner()){
-                Toast toast = Toast.makeText(getApplicationContext(),R.string.circle_win,Toast.LENGTH_LONG);
-                toast.show();
-                endGame();
-            }
-            else {game.changePlayerTurn();}
         }
         else {
-            game.markInGameTile(tile.getId());
             tile.setImageResource(R.drawable.cross);
             tile.setClickable(false);
-            if(game.isWinner()){
-                Toast toast = Toast.makeText(getApplicationContext(),R.string.cross_win,Toast.LENGTH_LONG);
-                toast.show();
-                endGame();
+        }
+        if(game.isWinner()){
+            Toast toast;
+            if(game.currentPlayer == 1){
+                toast = Toast.makeText(getApplicationContext(),R.string.circle_win,Toast.LENGTH_LONG);
             }
-            else {game.changePlayerTurn();}
+            else{
+                toast = Toast.makeText(getApplicationContext(),R.string.cross_win,Toast.LENGTH_LONG);
+            }
+            toast.show();
+            endGame();
+        }
+        else if(game.isTie()){
+            Toast toast = Toast.makeText(getApplicationContext(),R.string.tie,Toast.LENGTH_LONG);
+            toast.show();
+            endGame();
+        }
+        else {
+            game.changePlayerTurn();
+            showCurrentPlayerText();
         }
     }
 }

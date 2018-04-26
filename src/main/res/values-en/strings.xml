@@ -11,4 +11,7 @@
     <string name="insane">Insane Mode</string>
     <string name="circle_win">Circle Wins!</string>
     <string name="cross_win">Cross Wins!</string>
+    <string name="tie">Tie!</string>
+    <string name="player_circle">Player O Turn</string>
+    <string name="player_cross">Player X Turn</string>
 </resources>
