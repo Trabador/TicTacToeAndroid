@@ -30,6 +30,10 @@ public class GameScreen extends Activity {
         this.game = new GameLogic(players, level);
         this.isOver = false;
         showCurrentPlayerText();
+        //**************************NEEDS TO BE DELETED , debug purpose only*******
+        Toast test = Toast.makeText(getApplicationContext(),"players "+players+" level "+level,Toast.LENGTH_LONG);
+        test.show();
+        //*******************************************
     }
 
     private void showCurrentPlayerText(){
@@ -42,8 +46,6 @@ public class GameScreen extends Activity {
         }
     }
 
-
-
     public void onTile(View v){
         if(!isOver){
             ImageView aux = (ImageView) findViewById(v.getId());
@@ -53,12 +55,17 @@ public class GameScreen extends Activity {
 
     private void endGame(){
         isOver = true;
-        TextView winner = (TextView) findViewById(R.id.currentPlytxt);
-        if(game.currentPlayer ==1){
-            winner.setText(R.string.circle_win);
+        TextView resultText = (TextView) findViewById(R.id.currentPlytxt);
+        if(game.isTie()){
+            resultText.setText(R.string.tie);
         }
-        else{
-            winner.setText(R.string.cross_win);
+        else {
+            if(game.currentPlayer ==1){
+                resultText.setText(R.string.circle_win);
+            }
+            else{
+                resultText.setText(R.string.cross_win);
+            }
         }
     }
 

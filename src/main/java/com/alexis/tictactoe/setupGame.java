@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 /**
  * Created by Alexis on 23-Apr-18.
@@ -16,22 +17,37 @@ public class setupGame extends Activity {
     protected  void onCreate(Bundle bundle){
         super.onCreate(bundle);
         setContentView(R.layout.setup);
+        RadioGroup playerNumGroup = (RadioGroup)findViewById (R.id.playerNum);
+        final RadioGroup levelModeGroup = (RadioGroup)findViewById(R.id.difficultylevel);
+        final TextView levelModeText = (TextView) findViewById(R.id.difLvl);
+        playerNumGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedID) {
+                if(checkedID==R.id.twoPMode){
+                    //if two player mode is selected hide level selection for cpu
+                    levelModeGroup.setEnabled(false);
+                    levelModeGroup.setVisibility(View.INVISIBLE);
+                    levelModeText.setVisibility(View.INVISIBLE);
+                }
+                else {
+                    //otherwise 1p mode is selected, re enable cpu level selection
+                    levelModeGroup.setEnabled(true);
+                    levelModeText.setVisibility(View.VISIBLE);
+                    levelModeGroup.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
-    public void on1PlayerButton(View view){
-        byte players = 1;
-        byte level = getDifficultyLevel();
-
-        Intent gotoGameIntent = new Intent(this,GameScreen.class);
-        gotoGameIntent.putExtra("playerNumber",players);
-        gotoGameIntent.putExtra("level",level);
-        this.startActivity(gotoGameIntent);
-
-    }
-
-    public void on2PlayerButton(View view){
-         byte players = 2;
-         byte level = -1;
+    public void onStartButton(View view){
+        byte players = getPlayerNumber();
+        byte level;
+        if(players == 1){
+            level = getDifficultyLevel();
+        }
+        else {
+            level = -1;
+        }
 
         Intent gotoGameIntent = new Intent(this,GameScreen.class);
         gotoGameIntent.putExtra("playerNumber",players);
@@ -55,5 +71,18 @@ public class setupGame extends Activity {
                 break;
         }
         return level;
+    }
+
+    private byte getPlayerNumber(){
+        RadioGroup configPlayerNum = (RadioGroup) findViewById(R.id.playerNum);
+        int id = configPlayerNum.getCheckedRadioButtonId();
+        Byte playerNum = 1;
+        if(id==R.id.onePMode){
+            playerNum = 1;
+        }
+        else{
+            playerNum = 2;
+        }
+        return playerNum;
     }
 }

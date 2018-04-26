@@ -14,4 +14,9 @@
     <string name="tie">Empate</string>
     <string name="player_circle">Turno del Jugador O</string>
     <string name="player_cross">Turno del Jugador X</string>
+    <string name="player_num_opt">Selecciona Modo de Juego: </string>
+    <string name="difficulty_opt">Selecciona Nivel de Difficultad: </string>
+    <string name="one_ply_mode">Jugador Vs Maquina</string>
+    <string name="two_ply_mode">Jugador Vs Jugador</string>
+    <string name="start_game">Comenzar Partida</string>
 </resources>

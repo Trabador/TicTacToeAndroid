@@ -14,4 +14,9 @@
     <string name="tie">Tie!</string>
     <string name="player_circle">Player O Turn</string>
     <string name="player_cross">Player X Turn</string>
+    <string name="player_num_opt">Select Play Mode: </string>
+    <string name="difficulty_opt">Select Difficulty Level: </string>
+    <string name="one_ply_mode">Player Vs CPU</string>
+    <string name="two_ply_mode">Player Vs Player</string>
+    <string name="start_game">Start Game</string>
 </resources>

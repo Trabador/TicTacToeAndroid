@@ -12,12 +12,45 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/onePlayerBtn"
+        <TextView
+            android:id="@+id/playerNumTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="on1PlayerButton"
-            android:text="@string/one_player" />
+            android:text="@string/player_num_opt"
+            android:textAlignment="viewStart"
+            android:textSize="24sp" />
+
+        <RadioGroup
+            android:id="@+id/playerNum"
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
+            android:checkedButton="@id/onePMode">
+
+            <RadioButton
+                android:id="@+id/onePMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/one_ply_mode" />
+
+            <RadioButton
+                android:id="@+id/twoPMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/two_ply_mode" />
+
+            <TextView
+                android:id="@+id/difLvl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/difficulty_opt"
+                android:textAlignment="viewStart"
+                android:textSize="24sp" />
+
+
+        </RadioGroup>
 
         <RadioGroup
             android:id="@+id/difficultylevel"
@@ -51,7 +84,7 @@
             android:id="@+id/twoPlayerBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="on2PlayerButton"
-            android:text="@string/two_player" />
+            android:onClick="onStartButton"
+            android:text="@string/start_game" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
