@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 
 /**
  * Created by Alexis on 24-Apr-18.
@@ -18,6 +21,8 @@ public class GameScreen extends Activity {
     private Byte level;
     private GameLogic game;
     private Boolean isOver;
+    private Dictionary<Integer,Integer> tiles = new Hashtable();
+
 
     @Override
     protected  void onCreate(Bundle bundle){
@@ -27,13 +32,26 @@ public class GameScreen extends Activity {
         Bundle extraData = getIntent().getExtras();
         this.players = extraData.getByte("playerNumber");
         this.level = extraData.getByte("level");
-        this.game = new GameLogic(players, level);
+        fillTilesReference();
+        this.game = new GameLogic(players, level, tiles);
         this.isOver = false;
         showCurrentPlayerText();
         //**************************NEEDS TO BE DELETED , debug purpose only*******
         Toast test = Toast.makeText(getApplicationContext(),"players "+players+" level "+level,Toast.LENGTH_LONG);
         test.show();
         //*******************************************
+    }
+
+    private void fillTilesReference(){
+        tiles.put(R.id.a1,0);
+        tiles.put(R.id.a2,1);
+        tiles.put(R.id.a3,2);
+        tiles.put(R.id.b1,3);
+        tiles.put(R.id.b2,4);
+        tiles.put(R.id.b3,5);
+        tiles.put(R.id.c1,6);
+        tiles.put(R.id.c2,7);
+        tiles.put(R.id.c3,8);
     }
 
     private void showCurrentPlayerText(){
@@ -47,10 +65,29 @@ public class GameScreen extends Activity {
     }
 
     public void onTile(View v){
-        if(!isOver){
-            ImageView aux = (ImageView) findViewById(v.getId());
-            setMarkOnTile(aux);
+        if(players == 1){
+            if (!isOver) {
+                ImageView aux = (ImageView) findViewById(v.getId());
+                setMarkOnTile(aux);
+            }
+            if(!isOver){
+                int id = getImageViewID();
+                Toast toast = Toast.makeText(getApplicationContext(),"id "+id,Toast.LENGTH_LONG);
+                toast.show();
+                ImageView aux = (ImageView) findViewById(id);
+                setMarkOnTile(aux);
+            }
         }
+        else {
+            if (!isOver) {
+                ImageView aux = (ImageView) findViewById(v.getId());
+                setMarkOnTile(aux);
+            }
+        }
+    }
+
+    private int getImageViewID(){
+        return game.IA();
     }
 
     private void endGame(){

@@ -2,8 +2,10 @@ package com.alexis.tictactoe;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Alexis on 24-Apr-18.
@@ -25,24 +27,12 @@ public class GameLogic {
     private Dictionary<Integer,Integer> tiles = new Hashtable();//Tile maping from GUI to array positions
     private List<int[]> winCondition = new ArrayList();//List of every win condition in game
 
-    GameLogic(Byte players, Byte level){
+    GameLogic(Byte players, Byte level, Dictionary<Integer,Integer> tiles){
         this.players = players;
         this.level = level;
         this.currentPlayer = 1;
-        fillTilesReference();
+        this.tiles = tiles;
         fillWinConditionList();
-    }
-
-    private void fillTilesReference(){
-        tiles.put(R.id.a1,0);
-        tiles.put(R.id.a2,1);
-        tiles.put(R.id.a3,2);
-        tiles.put(R.id.b1,3);
-        tiles.put(R.id.b2,4);
-        tiles.put(R.id.b3,5);
-        tiles.put(R.id.c1,6);
-        tiles.put(R.id.c2,7);
-        tiles.put(R.id.c3,8);
     }
 
     private void fillWinConditionList(){
@@ -91,5 +81,32 @@ public class GameLogic {
             markedTiles = 0;
         }
         return false;
+    }
+
+    public int IA(){
+        boolean isValid = false;
+        int position;
+        int id = 0;
+        do{
+            Random randomTile = new Random();
+            position = randomTile.nextInt(gameArray.length);
+            isValid = isValidPosition(position);
+        }while(!isValid);
+
+        Enumeration enumeration = tiles.keys();
+
+        while(enumeration.hasMoreElements()){
+            Object element = enumeration.nextElement();
+            if(tiles.get(element) == position ){
+               id = (Integer) element;
+               break;
+            }
+        }
+        return id;
+    }
+
+    private boolean isValidPosition(int pos){
+        if(gameArray[pos] != 0){return false;}
+        else {return true;}
     }
 }
