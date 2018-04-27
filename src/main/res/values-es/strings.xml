@@ -19,4 +19,5 @@
     <string name="one_ply_mode">Jugador Vs Maquina</string>
     <string name="two_ply_mode">Jugador Vs Jugador</string>
     <string name="start_game">Comenzar Partida</string>
+    <string name="reset_game">Reiniciar Partida</string>
 </resources>

@@ -114,4 +114,38 @@ public class GameScreen extends Activity {
             showCurrentPlayerText();
         }
     }
+
+    public void onResetGameButton(View view){
+        this.game = new GameLogic(level);
+        this.isOver = false;
+        showCurrentPlayerText();
+        ImageView aux;
+        aux = (ImageView) findViewById(R.id.a1);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+        aux = (ImageView) findViewById(R.id.a2);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+        aux = (ImageView) findViewById(R.id.a3);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+        aux = (ImageView) findViewById(R.id.b1);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+        aux = (ImageView) findViewById(R.id.b2);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+        aux = (ImageView) findViewById(R.id.b3);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+        aux = (ImageView) findViewById(R.id.c1);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+        aux = (ImageView) findViewById(R.id.c2);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+        aux = (ImageView) findViewById(R.id.c3);
+        aux.setImageResource(R.drawable.tile);
+        aux.setClickable(true);
+    }
 }
