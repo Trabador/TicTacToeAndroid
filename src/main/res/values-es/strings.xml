@@ -20,4 +20,10 @@
     <string name="two_ply_mode">Jugador Vs Jugador</string>
     <string name="start_game">Comenzar Partida</string>
     <string name="reset_game">Reiniciar Partida</string>
+    <string name="ok">Aceptar</string>
+    <string name="data">Aplicacion del juego de gato para proposito de demo\n
+                        Programador  Alexis Garcia \n
+                        Contacto alexclaustro@gmail.com \n
+                        Icono de apliacion tomado de  flaticon en www.flaticon.com\n
+                        Version 1.0</string>
 </resources>

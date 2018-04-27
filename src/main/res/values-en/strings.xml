@@ -20,4 +20,10 @@
     <string name="two_ply_mode">Player Vs Player</string>
     <string name="start_game">Start Game</string>
     <string name="reset_game">Reset Game</string>
+    <string name="ok">OK</string>
+    <string name="data">This is a basic tic tac toe app for demo purpose only\n
+                        Programmer  Alexis Garcia \n
+                        Contact alexclaustro@gmail.com \n
+                        App icon made by flaticon from www.flaticon.com\n
+                        Version 1.0</string>
 </resources>

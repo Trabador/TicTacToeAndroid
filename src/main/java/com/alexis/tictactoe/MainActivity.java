@@ -18,6 +18,11 @@ public class MainActivity extends Activity {
         this.startActivity(gotoSetupIntent);
     }
 
+    public void onInfoButton(View view){
+        AboutDialog dialog = new AboutDialog();
+        dialog.show(getFragmentManager(),"InfoDialog");
+    }
+
     public void onExitBtn(View view){
         System.exit(1);
     }
