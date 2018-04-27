@@ -8,7 +8,7 @@
     <string name="two_player"> 2 Jugadores </string>
     <string name="easy">Modo Facil</string>
     <string name="normal">Modo Normal </string>
-    <string name="insane">Modo Imposible</string>
+    <string name="hard">Modo Dificil</string>
     <string name="circle_win">Los Circulos Ganan!</string>
     <string name="cross_win">Las Cruces Ganan!</string>
     <string name="tie">Empate</string>

@@ -7,9 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
-
 
 /**
  * Created by Alexis on 24-Apr-18.
@@ -21,8 +18,8 @@ public class GameScreen extends Activity {
     private Byte level;
     private GameLogic game;
     private Boolean isOver;
-    private Dictionary<Integer,Integer> tiles = new Hashtable();
-
+    private enum gameStates {CIRCLE_WIN,CROSS_WIN,TIE}
+    private gameStates gameResult;
 
     @Override
     protected  void onCreate(Bundle bundle){
@@ -32,26 +29,9 @@ public class GameScreen extends Activity {
         Bundle extraData = getIntent().getExtras();
         this.players = extraData.getByte("playerNumber");
         this.level = extraData.getByte("level");
-        fillTilesReference();
-        this.game = new GameLogic(players, level, tiles);
+        this.game = new GameLogic(level);
         this.isOver = false;
         showCurrentPlayerText();
-        //**************************NEEDS TO BE DELETED , debug purpose only*******
-        Toast test = Toast.makeText(getApplicationContext(),"players "+players+" level "+level,Toast.LENGTH_LONG);
-        test.show();
-        //*******************************************
-    }
-
-    private void fillTilesReference(){
-        tiles.put(R.id.a1,0);
-        tiles.put(R.id.a2,1);
-        tiles.put(R.id.a3,2);
-        tiles.put(R.id.b1,3);
-        tiles.put(R.id.b2,4);
-        tiles.put(R.id.b3,5);
-        tiles.put(R.id.c1,6);
-        tiles.put(R.id.c2,7);
-        tiles.put(R.id.c3,8);
     }
 
     private void showCurrentPlayerText(){
@@ -71,10 +51,7 @@ public class GameScreen extends Activity {
                 setMarkOnTile(aux);
             }
             if(!isOver){
-                int id = getImageViewID();
-                Toast toast = Toast.makeText(getApplicationContext(),"id "+id,Toast.LENGTH_LONG);
-                toast.show();
-                ImageView aux = (ImageView) findViewById(id);
+                ImageView aux = (ImageView) findViewById(game.IA());
                 setMarkOnTile(aux);
             }
         }
@@ -86,23 +63,19 @@ public class GameScreen extends Activity {
         }
     }
 
-    private int getImageViewID(){
-        return game.IA();
-    }
-
     private void endGame(){
         isOver = true;
         TextView resultText = (TextView) findViewById(R.id.currentPlytxt);
-        if(game.isTie()){
-            resultText.setText(R.string.tie);
-        }
-        else {
-            if(game.currentPlayer ==1){
+        switch (gameResult){
+            case CIRCLE_WIN:
                 resultText.setText(R.string.circle_win);
-            }
-            else{
+                break;
+            case CROSS_WIN:
                 resultText.setText(R.string.cross_win);
-            }
+                break;
+            case TIE:
+                resultText.setText(R.string.tie);
+                break;
         }
     }
 
@@ -120,16 +93,20 @@ public class GameScreen extends Activity {
             Toast toast;
             if(game.currentPlayer == 1){
                 toast = Toast.makeText(getApplicationContext(),R.string.circle_win,Toast.LENGTH_LONG);
+                toast.show();
+                gameResult = gameStates.CIRCLE_WIN;//Player 1 Wins State
             }
             else{
                 toast = Toast.makeText(getApplicationContext(),R.string.cross_win,Toast.LENGTH_LONG);
+                toast.show();
+                gameResult = gameStates.CROSS_WIN;//Player 2 Wins State
             }
-            toast.show();
             endGame();
         }
         else if(game.isTie()){
             Toast toast = Toast.makeText(getApplicationContext(),R.string.tie,Toast.LENGTH_LONG);
             toast.show();
+            gameResult = gameStates.TIE; //The game is a Tie State
             endGame();
         }
         else {
