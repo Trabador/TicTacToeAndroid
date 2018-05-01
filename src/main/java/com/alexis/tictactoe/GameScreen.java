@@ -1,6 +1,7 @@
 package com.alexis.tictactoe;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,9 @@ public class GameScreen extends Activity {
     private Boolean isOver;
     private enum gameStates {CIRCLE_WIN,CROSS_WIN,TIE}
     private gameStates gameResult;
+    private MediaPlayer endGameMedia;
+    private MediaPlayer circleDrawMedia;
+    private MediaPlayer crossDrawMedia;
 
     @Override
     protected  void onCreate(Bundle bundle){
@@ -31,6 +35,21 @@ public class GameScreen extends Activity {
         this.level = extraData.getByte("level");
         this.game = new GameLogic(level);
         this.isOver = false;
+        this.endGameMedia = MediaPlayer.create(getApplicationContext(),R.raw.endgamesound);
+        this.circleDrawMedia = MediaPlayer.create(getApplicationContext(),R.raw.circledrawsound);
+        this.circleDrawMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(MediaPlayer mp) {
+                circleDrawMedia.stop();
+                circleDrawMedia.reset();
+            }
+        });
+        this.crossDrawMedia = MediaPlayer.create(getApplicationContext(), R.raw.crossdrawsound);
+        this.crossDrawMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(MediaPlayer mp) {
+                crossDrawMedia.stop();
+                crossDrawMedia.reset();
+            }
+        });
         showCurrentPlayerText();
     }
 
@@ -77,6 +96,7 @@ public class GameScreen extends Activity {
                 resultText.setText(R.string.tie);
                 break;
         }
+        endGameMedia.start();
     }
 
     private void setMarkOnTile(ImageView tile){
@@ -84,10 +104,14 @@ public class GameScreen extends Activity {
         if(game.currentPlayer == 1){
             tile.setImageResource(R.drawable.circle);
             tile.setClickable(false);
+            circleDrawMedia = MediaPlayer.create(getApplicationContext(),R.raw.circledrawsound);
+            circleDrawMedia.start();
         }
         else {
             tile.setImageResource(R.drawable.cross);
             tile.setClickable(false);
+            crossDrawMedia = MediaPlayer.create(getApplicationContext(),R.raw.crossdrawsound);
+            crossDrawMedia.start();
         }
         if(game.isWinner()){
             Toast toast;
