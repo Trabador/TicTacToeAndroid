@@ -105,9 +105,10 @@ public class GameLogic {
             isValid = isValidPosition(position);
         }while(!isValid);
 
-        //in level 2 check if the corners are occupied, if so , overwrite the position
+        //in level 2 check if the center or corners are occupied, if so , overwrite the position
         if(level == 2){
-            if(gameArray[0] == 0){position = 0;}
+            if(gameArray[4] == 0) {position = 4;}
+            else if(gameArray[0] == 0){position = 0;}
             else if(gameArray[2] == 0){position = 2;}
             else if(gameArray[6] == 0){position = 6;}
             else if(gameArray[8] == 0){position = 8;}

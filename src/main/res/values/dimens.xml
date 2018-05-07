@@ -2,5 +2,8 @@
 <resources>
     
     <dimen name="tile">105dp</dimen>
+    <dimen name="radius_btn">12dp</dimen>
+    <dimen name="button_height">35dp</dimen>
+    <dimen name="button_margin">10dp</dimen>
 
 </resources>
